@@ -1,77 +1,116 @@
 import java.awt.*;
-import java.util.Scanner;
 
 public class GameRuleLogic {
-    Player player1;
-    Player player2;
-    Dices dice;
-    Account turnpoints;
+    Dices dices;
+    Player player;
+    Account account;
 
-    //Skal den være her
-    objectgame(){
-        /*Scanner input = new Scanner(System.in);
-
-        System.out.println("Skriv dit navn, spiller1");
-        String player1name = input.nextLine();
-        player1 = new Player(player1name, points1);
-
-        System.out.println("Skriv dit navn, spiller2");
-        String player2name = input.nextLine();
-        player2 = new Player(player2name, points2 );*/
-
-        player1 = new Player("spiller1", Point.points1);
-        player2 = new Player("spiller2", Point.points2);
-
-        dice = new Dices();
+        //player1 = new Player("spiller1", Point.points1);
+        //player2 = new Player("spiller2", Point.points2);
     }
 
-    GameRuleLogic(){
-        int [] Feltliste = {2,3,4,5,6,7,8,9,10,11,12};
+    public int field(){
+        int [] field = {2,3,4,5,6,7,8,9,10,11,12};
 
-        Feltliste[2] = 250;
-        Feltliste[3] = -100;
-        Feltliste[4] = 100;
-        Feltliste[5] = -20;
-        Feltliste[6] = 180;
-        Feltliste[7] = 0;
-        Feltliste[8] = -70;
-        Feltliste[9] = 60;
-        Feltliste[10] = -80;
-        Feltliste[11] = -50;
-        Feltliste[12] = 650;
+        field[2] = 250;
+        field[3] = -100;
+        field[4] = 100;
+        field[5] = -20;
+        field[6] = 180;
+        field[7] = 0;
+        field[8] = -70;
+        field[9] = 60;
+        field[10] = -80;
+        field[11] = -50;
+        field[12] = 650;
 
-        for (int i = 0; i < Feltliste.length; i++) {
+        Dices dices;
 
-            System.out.println("Du er landt på feltet " + i + ". Derfor får du " + Feltliste[i] + " points!");
+        i = dices.faceValue1 + dices.faceValue2;
 
+        switch (field){
+            case '2':
+                System.out.println("You landed on " + i + ". You will get " + Feltliste[i] + " points!");
+                System.out.println("Which is Tower");
+                break;
+
+            case '3':
+                System.out.println("You landed on " + i + ". You will get " + Feltliste[i] + " points!");
+                System.out.println("Which is Crater");
+                break;
+
+            case '4':
+                System.out.println("You landed on " + i + ". You will get " + Feltliste[i] + " points!");
+                System.out.println("Which is Palace gates");
+                break;
+
+            case '5':
+                System.out.println("You landed on " + i + ". You will get " + Feltliste[i] + " points!");
+                System.out.println("Which is Cold Desert");
+                break;
+
+            case '6':
+                System.out.println("You landed on " + i + ". You will get " + Feltliste[i] + " points!");
+                System.out.println("Which is Walled City");
+                break;
+
+            case '7':
+                System.out.println("You landed on " + i + ". You will get " + Feltliste[i] + " points!");
+                System.out.println("Which is Monastery");
+                break;
+
+            case '8':
+                System.out.println("You landed on " + i + ". You will get " + Feltliste[i] + " points!");
+                System.out.println("Which is Black cave" +);
+                break;
+
+            case '9':
+                System.out.println("You landed on " + i + ". You will get " + Feltliste[i] + " points!");
+                System.out.println("Which is Hunts in the mountain");
+                break;
+
+            case '10':
+                System.out.println("You landed on " + i + ". You will get " + Feltliste[i] + " points!");
+                System.out.println("Which is the Werewall");
+                break;
+
+            case '11':
+                System.out.println("You landed on " + i + ". You will get " + Feltliste[i] + " points!");
+                System.out.println("Which is the pit");
+                break;
+
+            case '12':
+                System.out.println("You landed on " + i + ". You will get " + Feltliste[i] + " points!");
+                System.out.println("Which is Goldmine");
+                break;
         }
     }
 
-    public class Turn(){
-        Player currentPlayer = player1;
+   public class Turn{
 
-        while(points1 < 3000 || points2 < 3000){
-            if (currentPlayer == player1){
-                currentPlayer = player2;
-            }else if(currentPlayer == player2){
-                currentPlayer = player1;
-            }
-        }
+       public void setCurrentPlayer(Player currentPlayer) {
+           Player player = new Player();
+           Point point = new Point();
+           this.currentPlayer = player.player1;
+
+           while(point.playerpoints1 <= 3000) || (point.playerpoints2 <= 3000)){
+               if (currentPlayer == player.player1){
+                   currentPlayer = player.player2;
+               }else if(currentPlayer == player.player2){
+                   currentPlayer = player.player1;
+               }
+           }
+       }
     }
 
-    //roller den, og hvordan opdater man poins
-    public void play(){
+    public win(){
+        Point point = new Point();
 
-    }
-
-
-    private Player win(){
-
-        if(points1>points2){
-            System.out.println(player1 + " har vundet");
+        if(point.playerpoints1>=3000){
+            System.out.println(player1 + " vund");
         }
-        else if (points2>points2){
-            System.out.println(player2 + " har vundet");
+        else if (point.playerpoints2>=3000){
+            System.out.println(player2 + " vund");
         }
     }
 }

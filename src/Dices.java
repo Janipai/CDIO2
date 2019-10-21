@@ -1,18 +1,14 @@
-import java.util.Scanner;
-
 public class Dices {
-    public static void main(String[] args) {
 
-        Scanner input = new Scanner(System.in);
+    int faceValue1;
+    int faceValue2;
 
-        int faceValue;
+    public Dices(){
 
-        System.out.println("Skriv roll");
-        String roll = input.nextLine();
-
-        if (roll.equals("roll")) {
-            faceValue = (int) (2* Math.random() * 6 + 1);
-            System.out.println(faceValue);
-        }
+    }
+    public int roll(){
+        faceValue1 = (int)(Math.random() * 6 + 1);
+        faceValue2 = (int)(Math.random() * 6 + 1);
+        return faceValue1+faceValue2;
     }
 }

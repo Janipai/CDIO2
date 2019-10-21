@@ -1,24 +1,26 @@
+import java.lang.reflect.Field;
+
 public class Account {
     Dices dices;
     Player Player;
     GameRuleLogic play;
 
-    public void Points(){
+    public Points(){
 
-        GameRuleLogic grl = new GameRuleLogic();
-        Dices dices = new Dices();
+        Turn turn = new Turn();
+        Field field = new Field();
+        Player player = new Player();
 
-        int points1 = 1000;
-        int points2 = 1000;
+        int playerpoints1 = 1000;
+        int playerpoints2 = 1000;
 
-        while (points1 < 3000 && points2 < 3000){
-            turnpoints = dices.faceValue;
+        while (playerpoints1 < 3000 && playerpoints2 < 3000){
 
-            if(grl.currentPlayer == grl.player1){
-                points1 = points1 + turnpoints;
+            if(turn.currentPlayer == Player.player1){
+                playerpoints1 = playerpoints1 + field. ;
             }
-            if(grl,currentPlayer == grl.player2){
-                points2 = points2 + turnpoints;
+            if(turn.currentPlayer == Player.player2){
+                playerpoints2 = playerpoints2 + field.;
             }
         }
     }
