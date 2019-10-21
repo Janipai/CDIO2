@@ -1,22 +1,23 @@
-import java.util.Scanner;
-
 public class Player {
 
-    Player player1 = new Player();
-    Player player2 = new Player();
-
-    Player currentPlayer = new Player();
-
-
-    /*String name;
+    String name;
     int points;
 
-    Player(String name,int points){
+    public String getName() {
+        return name;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
+    }
+
+    Player(String name){
         this.name = name;
-        this.points = 0;
-    }*/
-
-
-
+        points = 1000;
+    }
 
 }
