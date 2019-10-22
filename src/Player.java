@@ -4,6 +4,7 @@ public class Player {
     int points;
 
     public String getName() {
+
         return name;
     }
 
