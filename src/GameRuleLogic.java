@@ -4,23 +4,20 @@ public class GameRuleLogic {
 
         Player player1 = new Player("spiller1");
         Player player2 = new Player("spiller2");
-        Dices dices = new Dices(6);
+        Dices dices = new Dices(8);
         boolean isGameOver = false;
         Scanner input = new Scanner(System.in);
         int [] field;
 
     public int [] generateField() {
-        int[] field = {0, 250, -100, 100, -20, 180, 0, -70, 60, -80, -50, 650};
+        int[] field = {250, -100, 100, -20, 180, 0, -70, 60, -80, -50, 650};
 
         return field;
     }
 
     public void land(int [] field, int index){
 
-        switch (12){
-            case 1:
-                System.out.println("You landed on start");
-                break;
+        switch (11){
             case 2:
                 System.out.println("You landed on " + 2 + ". You will get " + field[index] + " points!");
                 System.out.println("Which is Tower");
@@ -78,12 +75,14 @@ public class GameRuleLogic {
         }
     }
 
+
    public void turn(Player player, int index){
         String playerinput;
 
-        System.out.println("its "+ player.getName() + "s turn. Type \"roll\" " + " to roll the dices");
+        System.out.println("its "+ player.getName() + "s turn. Type \"r\" " + " to roll the dices");
         playerinput = input.nextLine();
-        if (!playerinput.equals("roll")){
+
+        if (!playerinput.equals("r")){
            System.out.println("Wrong input, try again :'(");
            turn(player, index);
        } else{
