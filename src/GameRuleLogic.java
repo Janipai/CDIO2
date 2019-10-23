@@ -2,12 +2,15 @@ import java.util.Scanner;
 
 public class GameRuleLogic {
 
-        Player player1 = new Player("spiller1");
-        Player player2 = new Player("spiller2");
-        Dices dices = new Dices(8);
-        boolean isGameOver = false;
+        Player player1 = new Player("player 1");
+        Player player2 = new Player("player 2");
+        Dices dices = new Dices(6);
         Scanner input = new Scanner(System.in);
         int [] field;
+
+        public GameRuleLogic(){
+            this.field = generateField();
+        }
 
     public int [] generateField() {
         int[] field = {250, -100, 100, -20, 180, 0, -70, 60, -80, -50, 650};
@@ -15,79 +18,114 @@ public class GameRuleLogic {
         return field;
     }
 
-    public void land(int [] field, int index){
+    private void land(int roll){
 
         switch (11){
             case 2:
-                System.out.println("You landed on " + 2 + ". You will get " + field[index] + " points!");
-                System.out.println("Which is Tower");
+                System.out.println("You rolled a " + roll + ". You will get " + field[roll-2] + " points!");
+                System.out.println("Which is Tower\n");
                 break;
 
             case 3:
-                System.out.println("You landed on " + 3 + ". You will get " + field[index] + " points!");
-                System.out.println("Which is Crater");
+                System.out.println("You rolled a " + roll + ". You will get " + field[roll-2] + " points!");
+                System.out.println("Which is Crater\n");
                 break;
 
             case 4:
-                System.out.println("You landed on " + 4 + ". You will get " + field[index] + " points!");
-                System.out.println("Which is Palace gates");
+                System.out.println("You rolled a " + roll + ". You will get " + field[roll-2] + " points!");
+                System.out.println("Which is Palace gates\n");
                 break;
 
             case 5:
-                System.out.println("You landed on " + 5 + ". You will get " + field[index] + " points!");
-                System.out.println("Which is Cold Desert");
+                System.out.println("You rolled a " + roll + ". You will get " + field[roll-2] + " points!");
+                System.out.println("Which is Cold Desert\n");
                 break;
 
             case 6:
-                System.out.println("You landed on " + 6 + ". You will get " + field[index] + " points!");
-                System.out.println("Which is Walled City");
+                System.out.println("You rolled a " + roll + ". You will get " + field[roll-2] + " points!");
+                System.out.println("Which is Walled City\n");
                 break;
 
             case 7:
-                System.out.println("You landed on " + 7 + ". You will get " + field[index] + " points!");
-                System.out.println("Which is Monastery");
+                System.out.println("You rolled a " + roll + ". You will get " + field[roll-2] + " points!");
+                System.out.println("Which is Monastery\n");
                 break;
 
             case 8:
-                System.out.println("You landed on " + 8 + ". You will get " + field[index] + " points!");
-                System.out.println("Which is Black cave");
+                System.out.println("You rolled a " + roll + ". You will get " + field[roll-2] + " points!");
+                System.out.println("Which is Black cave\n");
                 break;
 
             case 9:
-                System.out.println("You landed on " + 9 + ". You will get " + field[index] + " points!");
-                System.out.println("Which is Hunts in the mountain");
+                System.out.println("You rolled a " + roll + ". You will get " + field[roll-2] + " points!");
+                System.out.println("Which is Hunts in the mountain\n");
                 break;
 
             case 10:
-                System.out.println("You landed on " + 10 + ". You will get " + field[index] + " points!");
-                System.out.println("Which is the Werewall");
+                System.out.println("You rolled a " + roll + ". You will get " + field[roll-2] + " points!");
+                System.out.println("Which is the Werewall\n");
                 break;
 
             case 11:
-                System.out.println("You landed on " + 11 + ". You will get " + field[index] + " points!");
-                System.out.println("Which is the pit");
+                System.out.println("You rolled a " + roll + ". You will get " + field[roll-2] + " points!");
+                System.out.println("Which is the pit\n");
                 break;
 
             case 12:
-                System.out.println("You landed on " + 12 + ". You will get " + field[index] + " points!");
-                System.out.println("Which is Goldmine");
+                System.out.println("You rolled a " + roll + ". You will get " + field[roll-2] + " points!");
+                System.out.println("Which is Goldmine\n");
                 break;
         }
     }
 
 
-   public void turn(Player player, int index){
+   private void turn(Player player){
         String playerinput;
 
-        System.out.println("its "+ player.getName() + "s turn. Type \"r\" " + " to roll the dices");
+        System.out.println("its "+ player.getName() + "s turn." + " You have " + player.getPoints()+ " points." +
+                " Type \"r\" " + " to roll the dices");
         playerinput = input.nextLine();
 
         if (!playerinput.equals("r")){
            System.out.println("Wrong input, try again :'(");
-           turn(player, index);
+           turn(player);
        } else{
-            int value = dices.roll();
-            land(field,index+value%12);
+            int roll = dices.roll();
+            land(roll);
+            player.setPoints(field[roll-2]+player.getPoints());
+            System.out.println("You now have " + player.getPoints()+ " points.\n");
        }
+    }
+    public void gameFlow(){
+
+        while(!isGameOver()){
+            turn(player1);
+            if (player1victory()){
+                isGameOver();
+            }
+            turn(player2);
+            if (player2victory()){
+                isGameOver();
+            }
+        }
+    }
+    private boolean player1victory(){
+        if(player1.getPoints()>=3000){
+            System.out.println("Congratulation, player1 won");
+            return true;
+        }else return false;
+    }
+    private boolean player2victory(){
+        if(player2.getPoints()>=3000){
+            System.out.println("Congratulation, player2 won");
+            return true;
+        }else return false;
+    }
+    private boolean isGameOver(){
+        if(player1victory()||player2victory()){
+            return true;
+        }else{
+            return false;
+        }
     }
 }
