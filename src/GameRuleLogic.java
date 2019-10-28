@@ -2,8 +2,8 @@ import java.util.Scanner;
 
 public class GameRuleLogic {
 
-        Player player1 = new Player("player 1");
-        Player player2 = new Player("player 2");
+        Player player1 = new Player("Player 1");
+        Player player2 = new Player("Player 2");
         Dices dices = new Dices(6);
         Scanner input = new Scanner(System.in);
         int [] field;
@@ -20,62 +20,52 @@ public class GameRuleLogic {
 
     private void land(int roll){
 
-        switch (11){
+        switch (roll){
             case 2:
-                System.out.println("You rolled a " + roll + ". You will get " + field[roll-2] + " points!");
-                System.out.println("You found 250 points in the tower\n");
+                System.out.println("You found a fortune of "+ field[roll-2]+" points in the tower"+"\n");
                 break;
 
             case 3:
-                System.out.println("You rolled a " + roll + ". You will get " + field[roll-2] + " points!");
-                System.out.println("The crater collapsed on you, loosing 100 points\n");
+                System.out.println("The crater collapsed on you, loosing "+ field[roll-2]+" points"+"\n");
                 break;
 
             case 4:
-                System.out.println("You rolled a " + roll + ". You will get " + field[roll-2] + " points!");
-                System.out.println("The people at the palace gates greeted you with 100 points\n");
+
+                System.out.println("The people at the palace gates greeted you, giving you "+ field[roll-2]+" points"+"\n");
                 break;
 
             case 5:
-                System.out.println("You rolled a " + roll + ". You will get " + field[roll-2] + " points!");
-                System.out.println("You almost froze in the cold desert, loosing 20 points\n");
+                System.out.println("You almost froze in the cold desert,loosing "+ field[roll-2]+" points"+"\n");
                 break;
 
             case 6:
-                System.out.println("You rolled a " + roll + ". You will get " + field[roll-2] + " points!");
-                System.out.println("You found a fortune of 180 points in the Walled city\n");
+                System.out.println("You found a fortune of gold "+ field[roll-2]+" in the Walled city"+"\n");
                 break;
 
             case 7:
-                System.out.println("You rolled a " + roll + ". You will get " + field[roll-2] + " points!");
-                System.out.println("You walked into the monastery in vain, finding nothing\n");
+                System.out.println("You walked into the monastery in vain, finding nothing "+ field[roll-2]+" points"+"\n");
                 break;
 
             case 8:
-                System.out.println("You rolled a " + roll + ". You will get " + field[roll-2] + " points!");
-                System.out.println("You couldn't find your way out from the black cave, loosing 70 points\n");
+                System.out.println("You couldn't find your way out from the black cave, loosing "+ field[roll-2]+" points"+"\n");
                 break;
 
             case 9:
-                System.out.println("You rolled a " + roll + ". You will get " + field[roll-2] + " points!");
                 System.out.println("You accidentally killed the fokes in the huts in the mountain, " +
-                        "and accidentally taking all of their valuables\n");
+                        "and accidentally taking all of their valuables of af total "+ field[roll-2]+" points"+"\n");
                 break;
 
             case 10:
-                System.out.println("You rolled a " + roll + ". You will get " + field[roll-2] + " points!");
-                System.out.println("The werewall scared you away, while 80 points fell out of your pocket. " +
-                        "You ran and gained another turn\n");
+                System.out.println("The werewall scared you away, while "+ field[roll-2]+" points fell out of your pocket. " +
+                        "You ran and gained another turn"+"\n");
                 break;
 
             case 11:
-                System.out.println("You rolled a " + roll + ". You will get " + field[roll-2] + " points!");
-                System.out.println("You fell into the pit loosing 50 points\n");
+                System.out.println("You fell into the pit,loosing "+ field[roll-2]+" points"+"\n");
                 break;
 
             case 12:
-                System.out.println("You rolled a " + roll + ". You will get " + field[roll-2] + " points!");
-                System.out.println("You found a jackpot in the goldmine, gaining 650 points\n");
+                System.out.println("You found a jackpot of "+ field[roll-2]+" points in the goldmine"+"\n");
                 break;
         }
     }
@@ -84,18 +74,21 @@ public class GameRuleLogic {
    private void turn(Player player){
         String playerinput;
 
-        System.out.println("its "+ player.getName() + "s turn." + " You have " + player.getPoints()+ " points." +
-                " Type \"r\" " + " to roll the dices");
+        System.out.println(player.getName() + "'s turn" + " " + "|" + " Points: " + player.getPoints() + " " + "|" +
+                " Type \"r\" " + " to roll dices");
         playerinput = input.nextLine();
 
         if (!playerinput.equals("r")){
            System.out.println("Wrong input, try again :'(");
+            System.out.println("___________________________________________________________"+ "\n");
            turn(player);
        } else{
             int roll = dices.roll();
             land(roll);
             player.setPoints(field[roll-2]+player.getPoints());
-            System.out.println("You now have " + player.getPoints()+ " points.\n");
+            System.out.println("Accumulated points: " + player.getPoints());
+            System.out.println("___________________________________________________________"+ "\n");
+
        }
     }
     public void gameFlow(){
@@ -113,13 +106,13 @@ public class GameRuleLogic {
     }
     private boolean player1victory(){
         if(player1.getPoints()>=3000){
-            System.out.println("Congratulation, player1 won");
+            System.out.println("Congratulations, player1 won");
             return true;
         }else return false;
     }
     private boolean player2victory(){
         if(player2.getPoints()>=3000){
-            System.out.println("Congratulation, player2 won");
+            System.out.println("Congratulations, player2 won");
             return true;
         }else return false;
     }
