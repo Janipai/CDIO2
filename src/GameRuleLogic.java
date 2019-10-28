@@ -23,57 +23,59 @@ public class GameRuleLogic {
         switch (11){
             case 2:
                 System.out.println("You rolled a " + roll + ". You will get " + field[roll-2] + " points!");
-                System.out.println("Which is Tower\n");
+                System.out.println("You found 250 points in the tower\n");
                 break;
 
             case 3:
                 System.out.println("You rolled a " + roll + ". You will get " + field[roll-2] + " points!");
-                System.out.println("Which is Crater\n");
+                System.out.println("The crater collapsed on you, loosing 100 points\n");
                 break;
 
             case 4:
                 System.out.println("You rolled a " + roll + ". You will get " + field[roll-2] + " points!");
-                System.out.println("Which is Palace gates\n");
+                System.out.println("The people at the palace gates greeted you with 100 points\n");
                 break;
 
             case 5:
                 System.out.println("You rolled a " + roll + ". You will get " + field[roll-2] + " points!");
-                System.out.println("Which is Cold Desert\n");
+                System.out.println("You almost froze in the cold desert, loosing 20 points\n");
                 break;
 
             case 6:
                 System.out.println("You rolled a " + roll + ". You will get " + field[roll-2] + " points!");
-                System.out.println("Which is Walled City\n");
+                System.out.println("You found a fortune of 180 points in the Walled city\n");
                 break;
 
             case 7:
                 System.out.println("You rolled a " + roll + ". You will get " + field[roll-2] + " points!");
-                System.out.println("Which is Monastery\n");
+                System.out.println("You walked into the monastery in vain, finding nothing\n");
                 break;
 
             case 8:
                 System.out.println("You rolled a " + roll + ". You will get " + field[roll-2] + " points!");
-                System.out.println("Which is Black cave\n");
+                System.out.println("You couldn't find your way out from the black cave, loosing 70 points\n");
                 break;
 
             case 9:
                 System.out.println("You rolled a " + roll + ". You will get " + field[roll-2] + " points!");
-                System.out.println("Which is Hunts in the mountain\n");
+                System.out.println("You accidentally killed the fokes in the huts in the mountain, " +
+                        "and accidentally taking all of their valuables\n");
                 break;
 
             case 10:
                 System.out.println("You rolled a " + roll + ". You will get " + field[roll-2] + " points!");
-                System.out.println("Which is the Werewall\n");
+                System.out.println("The werewall scared you away, while 80 points fell out of your pocket. " +
+                        "You ran and gained another turn\n");
                 break;
 
             case 11:
                 System.out.println("You rolled a " + roll + ". You will get " + field[roll-2] + " points!");
-                System.out.println("Which is the pit\n");
+                System.out.println("You fell into the pit loosing 50 points\n");
                 break;
 
             case 12:
                 System.out.println("You rolled a " + roll + ". You will get " + field[roll-2] + " points!");
-                System.out.println("Which is Goldmine\n");
+                System.out.println("You found a jackpot in the goldmine, gaining 650 points\n");
                 break;
         }
     }
