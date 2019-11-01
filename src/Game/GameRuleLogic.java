@@ -1,3 +1,7 @@
+package Game;
+
+import Game.Dices;
+
 import java.util.Scanner;
 
 public class GameRuleLogic {
@@ -11,6 +15,7 @@ public class GameRuleLogic {
         boolean gameOver = false;
 
         public GameRuleLogic(){
+
             this.field = generateField();
         }
 

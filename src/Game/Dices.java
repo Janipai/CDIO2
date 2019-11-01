@@ -1,3 +1,5 @@
+package Game;
+
 public class Dices {
 
     int sides;
@@ -6,8 +8,10 @@ public class Dices {
     int faceValue2;
 
     public Dices(int sides){
+
         this.sides = sides;
     }
+
     public int roll(){
         faceValue1 = (int)(Math.random() * sides + 1);
         faceValue2 = (int)(Math.random() * sides + 1);
