@@ -1,10 +1,11 @@
+package Game;
 import java.util.Scanner;
 
 public class GameRuleLogic {
 
-    Player player1 = new Player("Player 1");
-    Player player2 = new Player("Player 2");
-    Dices dices = new Dices(6);
+    Game.Player player1 = new Game.Player("Player 1");
+    Game.Player player2 = new Game.Player("Player 2");
+    Game.Dices dices = new Game.Dices(6);
     int lastRollValue;
     Scanner input = new Scanner(System.in);
     int [] field;
@@ -69,7 +70,7 @@ public class GameRuleLogic {
 
 
     //Is the method for the turn based system
-    private void turn(Player player){
+    private void turn(Game.Player player){
         String playerinput;
 
         //The UI of the game. Displays name, points and who's turn it is
@@ -87,7 +88,12 @@ public class GameRuleLogic {
         } else{
             int roll = dices.roll();
             land(roll);
-            player.setPoints(field[roll-2]+player.getPoints());
+
+            if (field[roll-2]+player.getPoints() < 0){
+                player.setPoints(0);
+            }else{
+                player.setPoints(field[roll-2]+player.getPoints());
+            }
             System.out.println("Accumulated points: " + player.getPoints());
             System.out.println("____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________"+ "\n");
 
