@@ -7,6 +7,7 @@ public class Dices {
     int faceValue1;
     int faceValue2;
 
+    //Method that rolls 2 dices and set Dices equal to the to values sums
     public Dices(int sides){
 
         this.sides = sides;
