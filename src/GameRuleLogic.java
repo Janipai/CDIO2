@@ -10,16 +10,21 @@ public class GameRuleLogic {
     int [] field;
     boolean gameOver = false;
 
+
+    //Creates a game board
     public GameRuleLogic(){
         this.field = generateField();
     }
 
+    //Fills the board with values from a array
     public int [] generateField() {
         int[] field = {250, -100, 100, -20, 180, 0, -70, 60, -80, -50, 650};
 
         return field;
     }
 
+    //The different values and names from the different fields.
+    //Checks your dice value and checks what you land on
     private void land(int roll){
         lastRollValue = roll;
         System.out.println("You rolled a " + roll);
@@ -63,11 +68,16 @@ public class GameRuleLogic {
     }
 
 
+    //Is the method for the turn based system
     private void turn(Player player){
         String playerinput;
 
+        //The UI of the game. Displays name, points and who's turn it is
         System.out.println(player.getName() + "'s turn" + " " + "|" + " Points: " + player.getPoints() + " " + "|" +
                 " Type \"r\"" + " to roll dices");
+
+        //Waits for the player input and if its correct, then rolls the dices
+        // Then sets the players points depend on what field they landed on. followed up by displaying them
         playerinput = input.nextLine();
 
         if (!playerinput.equals("r")){
@@ -83,26 +93,8 @@ public class GameRuleLogic {
 
         }
     }
-    private void turn(Player player, String runCmd){
-        String playerinput = runCmd;
 
-        System.out.println(player.getName() + "'s turn" + " " + "|" + " Points: " + player.getPoints() + " " + "|" +
-                " Type \"r\"" + " to roll dices");
-        //playerinput = input.nextLine();
-
-        if (!playerinput.equals("r")){
-            System.out.println("Wrong input, try again :'(");
-            System.out.println("____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________"+ "\n");
-            turn(player);
-        } else{
-            int roll = dices.roll();
-            land(roll);
-            player.setPoints(field[roll-2]+player.getPoints());
-            System.out.println("Accumulated points: " + player.getPoints());
-            System.out.println("____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________"+ "\n");
-
-        }
-    }
+    //Its the flow that keeps the game going in loops until a player wins the game
     public void gameFlow(){
 
         boolean firstRun = true;
@@ -133,54 +125,22 @@ public class GameRuleLogic {
                 System.out.println("Congratulations, player2 won");
                 break;
             }
-
-
-          /*  if(!player2victory()){
-                if (lastRollValue==10)
-                {
-                    turn(player2);
-                } else
-                {
-                    turn(player1);
-                }
-
-            }
-
-            if(!player2victory()){
-                if (lastRollValue==10)
-                {
-                    turn(player1);
-                } else
-                {
-                    turn(player2);
-                }
-
-            } */
-
-
-
         }
     }
 
-
+    //checks if player 1 has won the game
     private boolean player1victory(){
         if(player1.getPoints()>=3000){
 
             return true;
         }else return false;
     }
+
+    //Checks if player 2 has won the game
     private boolean player2victory(){
         if(player2.getPoints()>=3000){
 
             return true;
         }else return false;
-    }
-    private boolean isGameOver(){
-        if(player1victory()||player2victory()){
-            return true;
-        }else{
-            return false;
-        }
-
     }
 }
