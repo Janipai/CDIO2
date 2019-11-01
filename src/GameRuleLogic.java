@@ -2,15 +2,17 @@ import java.util.Scanner;
 
 public class GameRuleLogic {
 
-        Player player1 = new Player("Player 1");
-        Player player2 = new Player("Player 2");
-        Dices dices = new Dices(6);
-        Scanner input = new Scanner(System.in);
-        int [] field;
+    Player player1 = new Player("Player 1");
+    Player player2 = new Player("Player 2");
+    Dices dices = new Dices(6);
+    int lastRollValue;
+    Scanner input = new Scanner(System.in);
+    int [] field;
+    boolean gameOver = false;
 
-        public GameRuleLogic(){
-            this.field = generateField();
-        }
+    public GameRuleLogic(){
+        this.field = generateField();
+    }
 
     public int [] generateField() {
         int[] field = {250, -100, 100, -20, 180, 0, -70, 60, -80, -50, 650};
@@ -19,7 +21,8 @@ public class GameRuleLogic {
     }
 
     private void land(int roll){
-
+        lastRollValue = roll;
+        System.out.println("You rolled a " + roll);
         switch (roll){
             case 2:
                 System.out.println("You found a fortune of "+ field[roll-2]+" points in the tower"+"\n");
@@ -60,7 +63,7 @@ public class GameRuleLogic {
     }
 
 
-   private void turn(Player player){
+    private void turn(Player player){
         String playerinput;
 
         System.out.println(player.getName() + "'s turn" + " " + "|" + " Points: " + player.getPoints() + " " + "|" +
@@ -68,42 +71,107 @@ public class GameRuleLogic {
         playerinput = input.nextLine();
 
         if (!playerinput.equals("r")){
-           System.out.println("Wrong input, try again :'(");
+            System.out.println("Wrong input, try again :'(");
             System.out.println("____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________"+ "\n");
-           turn(player);
-       } else{
+            turn(player);
+        } else{
             int roll = dices.roll();
             land(roll);
             player.setPoints(field[roll-2]+player.getPoints());
             System.out.println("Accumulated points: " + player.getPoints());
             System.out.println("____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________"+ "\n");
 
-       }
+        }
+    }
+    private void turn(Player player, String runCmd){
+        String playerinput = runCmd;
+
+        System.out.println(player.getName() + "'s turn" + " " + "|" + " Points: " + player.getPoints() + " " + "|" +
+                " Type \"r\"" + " to roll dices");
+        //playerinput = input.nextLine();
+
+        if (!playerinput.equals("r")){
+            System.out.println("Wrong input, try again :'(");
+            System.out.println("____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________"+ "\n");
+            turn(player);
+        } else{
+            int roll = dices.roll();
+            land(roll);
+            player.setPoints(field[roll-2]+player.getPoints());
+            System.out.println("Accumulated points: " + player.getPoints());
+            System.out.println("____________________________________________________________________________________________________________________________________________________________________________________________________________________________________________"+ "\n");
+
+        }
     }
     public void gameFlow(){
 
-        while(!isGameOver()){
-            turn(player1);
+        boolean firstRun = true;
+
+        while(!gameOver){
+
+            if (firstRun){
+                firstRun = false;
+                turn(player1);
+            }
+
+            if(!player1victory()){
+                turn(player2);
+            }
+
+            if (!player2victory()){
+                turn(player1);
+            }
+
             if (player1victory()){
-                isGameOver();
+                gameOver = true;
+                System.out.println("Congratulations, player1 won");
+                break;
             }
-            turn(player2);
+
             if (player2victory()){
-                isGameOver();
+                gameOver = true;
+                System.out.println("Congratulations, player2 won");
+                break;
             }
+
+
+          /*  if(!player2victory()){
+                if (lastRollValue==10)
+                {
+                    turn(player2);
+                } else
+                {
+                    turn(player1);
+                }
+
+            }
+
+            if(!player2victory()){
+                if (lastRollValue==10)
+                {
+                    turn(player1);
+                } else
+                {
+                    turn(player2);
+                }
+
+            } */
+
+
+
         }
     }
 
 
     private boolean player1victory(){
         if(player1.getPoints()>=3000){
-            System.out.println("Congratulations, player1 won");
+
             return true;
         }else return false;
     }
     private boolean player2victory(){
         if(player2.getPoints()>=3000){
-            System.out.println("Congratulations, player2 won");
+
             return true;
         }else return false;
     }
@@ -113,5 +181,6 @@ public class GameRuleLogic {
         }else{
             return false;
         }
+
     }
 }
