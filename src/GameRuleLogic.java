@@ -106,20 +106,31 @@ public class GameRuleLogic {
     public void gameFlow(){
 
         boolean firstRun = true;
-
+        String lastplayer ="";
         while(!gameOver){
 
             if (firstRun){
                 firstRun = false;
                 turn(player1);
+                lastplayer="player1";
+            }
+
+            if (lastplayer.equals("player1") && lastRollValue==10){
+                turn(player1);
+            }
+
+            if (lastplayer.equals("player2") && lastRollValue==10){
+                turn(player2);
             }
 
             if(!player1victory()){
                 turn(player2);
+                lastplayer="player2";
             }
 
             if (!player2victory()){
                 turn(player1);
+                lastplayer="player1";
             }
 
             if (player1victory()){
