@@ -29,6 +29,10 @@ public class GameRuleLogic {
         lastRollValue = roll;
         System.out.println("You rolled a " + roll);
         switch (roll){
+            case 1:
+                System.out.println("Det her er en ændring");
+                break;
+
             case 2:
                 System.out.println("You found a fortune of "+ field[roll-2]+" points in the tower"+"\n");
                 break;
